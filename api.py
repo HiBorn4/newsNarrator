@@ -143,6 +143,10 @@ def get_audio(filename: str):
     raise HTTPException(status_code=404, detail="Audio file not found")
 
 
+@app.get("/")
+def read_root():
+    return {"message": "API is running!"}
+
 if __name__ == "__main__":
-    port = int(os.getenv("PORT", 8000))  # Render provides $PORT dynamically
-    uvicorn.run(app, host="0.0.0.0", port=port)
+    port = int(os.environ.get("PORT", 10000))  # Default to 10000 if PORT is not set
+    uvicorn.run("api:app", host="0.0.0.0", port=port, reload=True)
