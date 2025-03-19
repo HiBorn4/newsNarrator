@@ -6,6 +6,7 @@ from fastapi.middleware.cors import CORSMiddleware
 import requests
 from transformers import pipeline
 from utils import *
+import uvicorn
 
 # Constants
 AUDIO_FOLDER = "audio_files"
@@ -140,3 +141,8 @@ def get_audio(filename: str):
     if os.path.exists(file_path):
         return FileResponse(file_path, media_type="audio/mp3")
     raise HTTPException(status_code=404, detail="Audio file not found")
+
+
+if __name__ == "__main__":
+    port = int(os.getenv("PORT", 8000))  # Render provides $PORT dynamically
+    uvicorn.run(app, host="0.0.0.0", port=port)
