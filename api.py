@@ -1,13 +1,10 @@
 import os
 import uuid
-from fastapi import FastAPI, HTTPException, FileResponse
+from fastapi import FastAPI, HTTPException
+from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
 import requests
 from transformers import pipeline
-from keybert import KeyBERT
-import spacy
-from gtts import gTTS
-from googletrans import Translator
 from utils import *
 
 # Constants
